@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -58,11 +60,13 @@ public class PackageCollection<T>
 	}
 
 	//need to have the Folder sers associated with the program
+	//Now instread of looking for the file in the source folder, it will now have look for the file name in the same directory as the program
 	public void save(String fileName) 
 	{
 		try
 		{
-			FileOutputStream fileOut = new FileOutputStream(new File("sers/" + fileName + ".ser"));
+			//FileOutputStream fileOut = new FileOutputStream(new File("sers/" + fileName + ".ser"));
+			FileOutputStream fileOut = new FileOutputStream(new File(fileName + ".ser"));
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(this);
 			out.close();
@@ -77,13 +81,15 @@ public class PackageCollection<T>
 	}
 
 	//need to have the Folder sers associated with the program
+	//Now instread of looking for the file in the source folder, it will now have look for the file name in the same directory as the program
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void load(String fileName)
 	{
 		PackageCollection result = null;
 		try
 		{
-			FileInputStream fileIn = new FileInputStream("sers/" + fileName + ".ser");
+			//FileInputStream fileIn = new FileInputStream("sers/" + fileName + ".ser");
+			FileInputStream fileIn = new FileInputStream(fileName + ".ser");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			result = (PackageCollection)in.readObject();
 			for(int i = 0; i < result.getSize(); i++)

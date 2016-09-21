@@ -12,9 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import Account.Account;
+import Account.AccountCollection;
 import Buttons.addDeposit;
 import Buttons.addWithdraw;
 import Buttons.viewAcctInfo;
+import DepositTransaction.DepositCollection;
 import DepositTransaction.Job;
 import DepositTransaction.Other;
 import Main.Runner;
@@ -23,6 +25,7 @@ import WithdrawTransaction.Food;
 import WithdrawTransaction.Gas;
 import WithdrawTransaction.OtherW;
 import WithdrawTransaction.Utilities;
+import WithdrawTransaction.WithdrawsCollection;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -42,6 +45,10 @@ public class sideWindow {
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static double width = screenSize.getWidth();
 	public static double height = screenSize.getHeight();
+	public static AccountCollection mainAccount = new AccountCollection();
+	public static WithdrawsCollection withdraws = new WithdrawsCollection();
+	public static DepositCollection deposits = new DepositCollection();
+	
 
 	/**
 	 * Launch the application.
@@ -50,13 +57,18 @@ public class sideWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-				Runner.mainAccount.load("Account");
-				Runner.deposits.load("Deposits");
-				Runner.withdraws.load("Withdraws");
+				 mainAccount.load("Account");
+				if( mainAccount.getSize() < 1){
+					 mainAccount.createAcct();
+				}
+				else{
+				 deposits.load("Deposits");
+				 withdraws.load("Withdraws");
 				
 				
 					sideWindow window = new sideWindow();
 					window.frame.setVisible(true);
+				}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -208,9 +220,9 @@ public class sideWindow {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				Runner.deposits.save("Deposits");
-				Runner.mainAccount.save("Account");
-				Runner.withdraws.save("Withdraws");
+				 deposits.save("Deposits");
+				 mainAccount.save("Account");
+				 withdraws.save("Withdraws");
 			}
 			@Override
 			public void windowActivated(WindowEvent e) {
@@ -230,7 +242,7 @@ public class sideWindow {
 		
 	}
 	public static void getInfo(JLabel date, JLabel amount, JLabel totalDep, JLabel totalWith){
-		Account acc = Runner.mainAccount.getAccount(0);
+		Account acc =  mainAccount.getAccount(0);
 		//gets the current date
 		final Date now = new Date();
 		final DateFormat dateFmt = DateFormat.getDateInstance(DateFormat.LONG);
@@ -239,8 +251,8 @@ public class sideWindow {
 		
 		amount.setText("$"+String.valueOf(acc.getCurrentBal()));
 		
-		totalDep.setText("$"+String.valueOf(Runner.deposits.getTotal()));
-		totalWith.setText("$"+String.valueOf(Runner.withdraws.getTotal()));
+		totalDep.setText("$"+String.valueOf( deposits.getTotal()));
+		totalWith.setText("$"+String.valueOf( withdraws.getTotal()));
 	}
 	
 }

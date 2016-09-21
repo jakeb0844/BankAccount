@@ -20,7 +20,6 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import Gui.sideWindow;
-import Main.Runner;
 
 public class viewAcctInfo {
 	
@@ -107,9 +106,9 @@ public class viewAcctInfo {
 	    StyleConstants.setBold(bold, true);
 	    //doc.insertString(doc.getLength(), "Some Text", style);
 	    //doc.insertString(doc.getLength(), "\n \t Some Text", null);
-		Runner.mainAccount.getAccount(0).viewAccountDetails(pane, bold, doc);
-		Runner.deposits.getDetails(pane, bold, doc);
-		Runner.withdraws.getDetails(pane, bold, doc);
+		sideWindow.mainAccount.getAccount(0).viewAccountDetails(pane, bold, doc);
+		sideWindow.deposits.getDetails(pane, bold, doc);
+		sideWindow.withdraws.getDetails(pane, bold, doc);
 		
 		
 	}

@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 
 
 import Gui.sideWindow;
-import Main.Runner;
 import WithdrawTransaction.ATM;
 import WithdrawTransaction.Food;
 import WithdrawTransaction.Gas;
@@ -161,8 +160,8 @@ public static void addWith(){
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ATM atm= new ATM(Double.parseDouble(amountField.getText()), storeField.getText(), dateField.getText());
-				atm.subtract(Runner.mainAccount.getAccount(0), atm.getAmount());
-				Runner.withdraws.addWithdraw(atm);
+				atm.subtract(sideWindow.mainAccount.getAccount(0), atm.getAmount());
+				sideWindow.withdraws.addWithdraw(atm);
 				frame.dispose();
 				sideWindow.frame.setVisible(true);
 			}
@@ -217,13 +216,13 @@ public static void addWith(){
 			public void actionPerformed(ActionEvent e) {
 				if(obj.equals("Other")){
 					OtherW other= new OtherW(Double.parseDouble(amountField.getText()), storeField.getText(), dateField.getText(), desField.getText());
-					other.subtract(Runner.mainAccount.getAccount(0), other.getCost());
-					Runner.withdraws.addWithdraw(other);
+					other.subtract(sideWindow.mainAccount.getAccount(0), other.getCost());
+					sideWindow.withdraws.addWithdraw(other);
 				}
 				else{
 					Utilities util = new Utilities(Double.parseDouble(amountField.getText()), storeField.getText(), dateField.getText(), desField.getText());
-					util.subtract(Runner.mainAccount.getAccount(0), util.getCost());
-					Runner.withdraws.addWithdraw(util);
+					util.subtract(sideWindow.mainAccount.getAccount(0), util.getCost());
+					sideWindow.withdraws.addWithdraw(util);
 				}
 				frame.dispose();
 				sideWindow.frame.setVisible(true);
@@ -300,13 +299,13 @@ public static void addWith(){
 				
 				if(checkBox.isSelected()){
 					Food food = new Food(Double.parseDouble(amountField.getText()), storeField.getText(), desField.getText(), dateField.getText());
-					food.subtract(Runner.mainAccount.getAccount(0), food.getCost());
-					Runner.withdraws.addWithdraw(food);
+					food.subtract(sideWindow.mainAccount.getAccount(0), food.getCost());
+					sideWindow.withdraws.addWithdraw(food);
 				}
 				else{
 					Food food = new Food(Double.parseDouble(amountField.getText()), storeField.getText(), desField.getText());
-					food.subtract(Runner.mainAccount.getAccount(0), food.getCost());
-					Runner.withdraws.addWithdraw(food);
+					food.subtract(sideWindow.mainAccount.getAccount(0), food.getCost());
+					sideWindow.withdraws.addWithdraw(food);
 				}
 				frame.dispose();
 				sideWindow.frame.setVisible(true);
@@ -366,8 +365,8 @@ public static void addWith(){
 			public void actionPerformed(ActionEvent e) {
 				
 				Gas gas = new Gas(Double.parseDouble(amountField.getText()), Double.parseDouble(galField.getText()),storeField.getText(), dateField.getText());
-				gas.subtract(Runner.mainAccount.getAccount(0), gas.getCost());
-				Runner.withdraws.addWithdraw(gas);
+				gas.subtract(sideWindow.mainAccount.getAccount(0), gas.getCost());
+				sideWindow.withdraws.addWithdraw(gas);
 				
 				
 				frame.dispose();

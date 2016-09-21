@@ -1,16 +1,26 @@
 package Account;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
+import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyledDocument;
 
 import DepositTransaction.Deposit;
 import DepositTransaction.Job;
+import DepositTransaction.Other;
+import Gui.sideWindow;
 import Main.Runner;
 import WithdrawTransaction.Food;
 
@@ -86,8 +96,7 @@ public class Account implements Serializable {
 		
 		
 	}
-	
-	
+		
 	
 	
 	

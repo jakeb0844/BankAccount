@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import DepositTransaction.Job;
 import DepositTransaction.Other;
 import Gui.sideWindow;
-import Main.Runner;
+
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -136,8 +136,8 @@ public class addDeposit {
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Job job= new Job(Double.parseDouble(incField.getText()), dateField.getText());
-				job.add(Runner.mainAccount.getAccount(0), job.getIncome());
-				Runner.deposits.addDeposit(job);
+				job.add(sideWindow.mainAccount.getAccount(0), job.getIncome());
+				sideWindow.deposits.addDeposit(job);
 				frame.dispose();
 				sideWindow.frame.setVisible(true);
 			}
@@ -182,8 +182,8 @@ public class addDeposit {
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Other other= new Other(Double.parseDouble(incField.getText()), desField.getText(),dateField.getText());
-				other.add(Runner.mainAccount.getAccount(0), other.getIncome());
-				Runner.deposits.addDeposit(other);
+				other.add(sideWindow.mainAccount.getAccount(0), other.getIncome());
+				sideWindow.deposits.addDeposit(other);
 				frame.dispose();
 				sideWindow.frame.setVisible(true);
 			}
